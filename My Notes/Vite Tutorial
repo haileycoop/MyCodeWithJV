@@ -1,0 +1,111 @@
+# Learning Vite deployment
+
+I am following this tutorial: https://www.youtube.com/watch?v=VAeRhmpcWEQ
+
+## Notes
+
+### Basics
+
+- Has a minimum node js version requirment which may differ based on template
+- only loads the code that you use
+- we will use netlify in this tutorial
+
+## Assessment questions
+
+I asked AI Tutor to produce a set of questions that I should be able to answer by the end. I will test myself on this afterwards.
+
+### Templates:
+
+**What are templates in the context of Vite?**
+
+Templates are pre-configured project setups that can be used to quickly bootstrap a new project. They can be used to set up a project with a specific framework or library, or to add additional features to a project.
+
+**How can you create a new project using templates in Vite?**
+
+I use the syntax `npm create vite -- --template <template-name>` to create a new project using templates in Vite.
+
+**What are the advantages of using templates in your project development workflow?**
+
+They save me from having to create a bunch of files from scratch and maybe making a mistake. They also save me from having to configure a bunch of things myself. I found a vite + phaser template on reddit and I may use that later but I do not know how to add my own templates yet.
+
+### Tailwind:
+
+**What is Tailwind CSS and how does it differ from other CSS frameworks?**
+
+Tailwind is a different approach to using CSS than I have seen before. From the tutorial, I noticed that it allows me to load a big library of CSS classes and then use them in my HTML without actually having them in my css files, as long as I use the correct tailwind syntax. I'm not really clear about the advantages of this yet because I am very new to CSS.
+
+**How can you integrate Tailwind CSS into a Vite project?**
+
+I need to install tailwind, postcss, and autoprefixer and then initialise tailwind which adds a tailwind.config.js file. In the config I need to list the files that will be using tailwind. Also in my css files I need to add a line to import tailwind base, components, and utilities.
+
+**What are some key features or utilities provided by Tailwind CSS?**
+
+The tutorial didn't really spell this out beyond what I have already written above.
+
+### 3. Environment Variables:
+
+**How can you define and access environment variables in a Vite project?**
+
+I can define environment variables in .env files. I can access them in my code using `import.meta.env.VITE_<variable-name>`. I can also access them in my html using `import.meta.env.VITE_<variable-name>`.
+
+**What is the purpose of using environment variables in your project?**
+
+Sometimes the purpose is to insure that senstive information is not stored in the wrong place. Sometimes it's to be able to switch easily between development and production environments.
+
+**How can you differentiate between development and production environment variables in Vite?**
+
+I can use .local to make sure the environment variables are committed to git. I can use [mode] to onlyu use them in a specified mode.
+
+More specific env files will take precedent over more gneneral ones. So .env.development.local will take precedent over .env.development.
+
+### 4. Deployments:
+
+**What are the different deployment options available for a Vite project?**
+
+I'm sure there are many but the tutorial only covered netlify, vercel, and github pages.
+
+**How can you deploy a Vite project to a specific hosting platform or server?**
+
+For github pages, I needed to initialise git and create a remote repo on github. Then I needed to open github pages and configure a yml file with additional steps - setup node, install dependencies, and build project. From there I could go to Actions to actually deploy the project.
+
+For netlify, I needed to create a netlify account and then initialise netlify in my project with the netlify-cli tools. Netlify has the advantage of not having to configure actions like in github, and seems to have smoother integrations.
+
+I decided to skip the vercel tutorial as it seems similar to netlify and I am not clear if I will use any of these features, because none of them have clear benefits for when I have to make a solution that also involves a realtime database and web sockets.
+
+I am currently thinking of experimenting with deploying from vite to firebase, and then trying to do that again with a phaser js project. This will allow me to get some prototypes working without adding the complication of something like sockets.io where I will have to manage my own database. But since netlify and the like have some integrations with MongoDB and such, maybe that's the better way to go. Firebase seems like it lacks a lot of the support for smooth continuous integration that netlify has.
+
+**What are some considerations to keep in mind when deploying a Vite project?**
+
+It seems like the main choice is what you are deploying to. Because Vite seems popular, it seems like most services work well with it already.
+
+### 5. Configuration:
+
+**What is the Vite configuration file and what can it be used for?**
+
+It is a file - vite.config.js - that determines specifics about how your app will be built and deployed. It can be used to change the port, the base url, the public path, and the build directory. It can also be used to add plugins.
+
+**How can you customize and extend the Vite configuration based on your project requirements?**
+
+The tutorial suggested I was this approach -
+
+    import { defineConfig } from 'vite';
+
+    export default defineConfig({
+      // config options here
+    });
+
+This ensures that my IDE will be able to autocomplete the config options.
+
+I can also turn on sourcemap here, which is something I reckon I will want to use -
+
+      export default defineConfig({
+        css: {
+          devSourcemap: true,
+        },
+      });
+
+I can also use it to look for my env files somewhere other than root using the envDir option.
+
+**What are some common configuration settings that can be modified in a Vite project?**
+
+I can use a function to change settings such as base depending on the mode (production vs dev)

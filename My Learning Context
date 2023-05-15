@@ -1,0 +1,73 @@
+# Learning Context
+
+## Experience level
+
+Hello. I am a beginner coder, but I have some ability with github, VS code, and terminal on mac. I have mostly learned javascript.
+
+## Larger goal
+
+I have a larger learning goal already. I want to be able to make and deploy multiplayer games. However these are not typical video games. They are facilitation tools, and often will mimic analog tabletop components such as dice and decks of cards.
+
+## Key Constraints
+
+Developing multiplayer games for facilitation purposes means that the players will often not be experienced with digital games, and will be playing the games at work, often on older computers. This creates very specific constraints that I need to operate within.
+
+1. **Browser Compatibility:** Ensure that the games work seamlessly across different web browsers (Chrome, Firefox, Safari, etc.) and versions. Aim for compatibility with commonly used browsers to maximize accessibility.
+
+2. **Performance Optimization:** Optimize the games for performance, considering both CPU and memory usage. Strive to make the games lightweight and efficient to ensure smooth gameplay, especially on older computers and devices.
+
+3. **Cross-Platform Compatibility:** Ensure that the games function well on different operating systems (Windows, macOS, Linux) without significant differences in behavior or performance.
+
+4. **Network Bandwidth Efficiency:** Develop multiplayer functionality that minimizes the amount of data transferred over the network. This optimization helps reduce bandwidth requirements and ensures a smoother experience for players, particularly in low-bandwidth or unstable network conditions.
+
+5. **Security Considerations:** Implement security measures to protect against common web vulnerabilities, such as cross-site scripting (XSS), cross-site request forgery (CSRF), and unauthorized access. Pay attention to authentication, data validation, and secure communication between the game client and server.
+
+6. **Corporate IT Environment Compatibility:** Ensure that the games can be accessed and played within corporate IT environments without triggering security restrictions or requiring special whitelisting. This allows users to enjoy the games without unnecessary IT involvement.
+
+7. **Accessibility:** Design the games to be inclusive and accessible to a wide range of users, considering factors such as color contrast, keyboard navigation, and support for assistive technologies.
+
+8. **Scalability:** The focus is on setting up a system for dedicated app instances with fewer than 30 users and between 2 and 10 concurrent users.
+
+9. **Beginner-friendly:** Opt for beginner-friendly workflows with fewer steps and use tools like Vite instead of more complex setups like Webpack.
+
+## Progress already made
+
+## Building and bundling
+
+I would initially like to use Vite as the basis for deployment. I have completed a youtube tutorial about vite covering templates, tailwind css, deployment, and configuration.
+
+## Deployment
+
+I would like to try using netflify initially, as I tested a few options as part of the vite tutorial. This seemed the easiest for me to understand, and had potentially useful integrations.
+
+## Language and frameworks
+
+For building the games, I want to use the Phaser JS library. After some initial research, it has the following advantages for my project:
+
+- As a web framework rather than a full game engine, it is most likely to meet my constraints for performance and browser compatibility.
+- I found some evidence that cross-platform-focused game engines like unity and godot did not always perform well when exporting to web.
+- Of the web game frameworks, Phaser had the best reviews for being well documented with a strong community.
+
+After choosing Phaser, I need to make the choice of Javascript vs Typescript. While Javascript would like be easier for me to learn initially, I am leaning towards Typescript. I am placing a high priority on security, and it seems like Typescript will help me develop better habits and cleaner code.
+
+## Multiplayer stack
+
+I have not made a clear decision on this. I have some experience with firebase, and I think it has some advantages in terms of ease of setup.
+
+However, I have noticed that most people in the gaming community favor tools like socket.io and colyseus. I am still learning about these, but I believe that both will require me also to separately set up a databse like MongoDB.
+
+## Learning Approach
+
+### Fast and tactical
+
+My teacher JV has asked me think about whether I am adopting a "slow and thorough" learning strategy, or a "fast and tactical" one. He suggests that if I plan on doing a lot of coding in the future then going slower to start with will get me further in the long run. Whereas if I only want to do a little coding he suggests primarily focusing on how to read and modify code, rather than how to write code from scratch.
+
+Since I don't plan to become a full time coder, fast and tactical is the right approach for me. I plan to work with AI to help generate code.
+
+### Sequencing small experiments
+
+I would like to learn through a series of small practical experiments that increase in complexity, until I am able to implement a full game.
+
+For my next experiment, I would like to make a simple single player game using vite, netlify, phaser, and typescript. The game can be as simple as a user dragging a small box around a canvas. My focus for this experiment will on getting a smooth coding workflow setup, all the way through deploying to the web.
+
+Once I have achieved this, my next experiment will be to make this very simple game into a multiplayer game. This will be a big step with the addition of a multiplyer stack. I would like help breaking down this step into many smaller steps. These smaller steps can include lessons and tutorials, as well as practical experiments.

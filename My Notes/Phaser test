@@ -1,0 +1,19 @@
+# Phaser test
+
+## Plan
+
+- Get a basic phaser game working with vite
+- Maybe follow one of the phaser tutorials with a relevant game type
+- If all goes well, move on to making a multiplayer test
+
+## Notes
+
+### First attempt at deploying using someone else's vite template for phaser and typescript
+
+- https://github.com/ubershmekel/vite-phaser-ts-starter
+- decided to go with typescript since it seems strong on avoiding errors, which is a big focus for me (even if it costs more effort up front)
+- got it working on local pretty easily but got a typescript error when trying to build. something wrong in the template code
+- so then I commented out the broken bit and partially overwrote it with the example from getting started with phaser example
+- this could build and be previewed, but I wasn't able to successfully deploy it using the github action .yml file supplied by the template developer
+- thinking of trashing this attempt and starting over with a vite typescript template and building up my own approach
+- might take some clues from this https://saricden.com/how-to-setup-a-phaser-3-project-with-vite

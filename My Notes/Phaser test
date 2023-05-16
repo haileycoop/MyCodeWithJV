@@ -17,3 +17,48 @@
 - this could build and be previewed, but I wasn't able to successfully deploy it using the github action .yml file supplied by the template developer
 - thinking of trashing this attempt and starting over with a vite typescript template and building up my own approach
 - might take some clues from this https://saricden.com/how-to-setup-a-phaser-3-project-with-vite
+
+### Second attempt with my own clean template
+
+**Following the tutorial**
+
+- I followed the linked tutorial above
+- this was super easy and helped me understand where phaser starts to differ from a vanilla typescript template
+- it had me add a canvas to index.html instead of an app component as usual
+- I imagine that if I wanted to add, say, a password gate before the game, then I would restore the app div and then load the game based on auth status
+- the tutorial then gave me a full replacement for main.ts, and I think I can use that as a starting point for learning about phaser
+- the tutorial then had me replace the default css with a much shorter css that controls the margin and padding of the body, and displays the canvas as a block
+- but instead of trying to update the game, I am going to work on deploying the default game from the tutorial to the web using netlify
+- if I can do that, then I think I can then do a little dive into Phaser, just enough to make a game with some interactivity that could then be multiplayer
+
+**Deploying with Netlify**
+
+- This was super easy. I went back to the vite tutorial to get the steps
+- I'll type them here to help memory
+- netlify login - but I was already logged in
+- netlify init - just like git init - need to initalise netlify in the project
+- choose create and configure a new site
+- team is 'haileycoop'
+- gave the site a custom name (which must be unique across netlify)
+- site is then created
+- then I tell it what my desired build script is (vite build)
+- I tell it where to put the build - "dist"
+- Say yes to it creating a netlify.toml file, which stores the build process etc
+
+**Learning Phaser basics**
+
+- I want to make a simple game on the level of the die on a table game I made before
+- I am trying to break into the learning curve of Phaser, which is tough because I am still pretty weak on JS and now TS
+- I asked the AI to explain the main.ts file from the tutorial to me, line by line, as a starting point
+- This was super successful - if the level of explanation was too high, I could ask it to drill on an a particular section as if I am a beginner, or I could ask a specific question
+- Some key stuff I want to remember
+  - I can define a new class by extending an existing phaser class, and then I use the constructor to instantiate that class
+  - "Casting as" is defining a type more strictly which is something that TS wants you to do
+  - the create method is run when it opens and is for things that happen once when everything loads
+  - update method is for things that happen ongoing (like an object moving or something being triggered every frame)
+  - I can choose CANVAS or WEBGL renderer. CANVAS is better for older browsers and simple 2D games
+  - I learned that I can only get the out of the box draggable objects features if I use webgl
+  - This means that if I am really designing for very out of date or low end devices then I need to avoid dragging in the design or else handle it manually
+  - Handling it manually is many more lines of code and resembles the code I was struggling with during my previous iteration
+  - It looks like I will need to use plugins to get dragging working, so that is my next learning goal
+  - Once I have a draggable box, then that is enough to start focusing on multiplayer

@@ -1,0 +1,26 @@
+# Multiplayer approach
+
+## Inputs from Luis
+
+**Broader understanding of multiplayer systems**
+I had an initial chat with Luis about how to go about this:
+
+- To properly run multiplayer, I need a persistent service to manage game state
+- Luis likened it to an app like Discord that is on my computer and always running and doing things, and therefore can persistently hold a state
+- He distinguished this from services like netlify and cloud functions which are all about being stateless
+- All of of these things open connections but stateless services try to close them again soon to save costs
+- My app will need to be divided up between the client side and the server side
+- The client side is the same for every user and can be static / stateless and so can be stored on a service like netlify
+- The server, with an app like colyseus running on it, needs to be perisstent because it needs to be stateful
+- I also have to write game logic code that lives on that server to manage game state
+- The principle here is that you want the server to be authoritative in terms of what the game state is, so all the clients are being synced from one place
+- There is no hard and fast rule about where the boundary is drawn
+- In the example of a die: User A clicks on the die to roll it. This input is read in the client, but is sent to the server. The client could start the roll animation, but the server should generate the result, and send it back to client A, as well as clients B, C, and D.
+
+**First multiplayer learning experiemnt**
+
+- Colysesus seems good enough to try
+- Initially just try running it locally and getting the code working from there
+- When I want to deploy the app properly, there are more choices to make
+- Luis is a fan of docker / kubernetes since we are moving environments around to different places now
+- I could maybe install the colyseus on bluehost, or maybe on AWS since I have some credits

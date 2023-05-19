@@ -8,7 +8,7 @@ The course will focus on meeting specific constraints such as browser compatibil
 
 ## Course Outline
 
-### Module 1: Deploying a Simple Game with Phaser.js and Netlify
+### COMPLETE: Module 1: Deploying a Simple Game with Phaser.js and Netlify
 
 In this module, you will learn the fundamentals of Phaser.js and how to deploy a simple game to the web using Netlify. You will focus on the absolute minimum features of Phaser.js, such as dragging a small box around a canvas, to keep the game simple and straightforward. Additionally, you will explore the deployment process using Netlify and ensure smooth accessibility of your game.
 
@@ -20,23 +20,95 @@ In this module, you will learn the fundamentals of Phaser.js and how to deploy a
 
 ### Module 2: Adding Multiplayer Functionality
 
-In this module, you will expand your simple game into a multiplayer experience. You will explore different multiplayer stack options, such as Firebase, Socket.io, and Colyseus, and evaluate their suitability based on your project's requirements. You will learn how to integrate the chosen multiplayer stack into your game and establish real-time communication between players.
+In this module, you will expand your simple game into a multiplayer experience using Colyseus as the chosen multiplayer stack. You will evaluate different multiplayer stack options, such as Firebase and Socket.io, and determine that Colyseus is the most suitable option based on its ability to manage game state and facilitate real-time communication between players.
 
 **Module Learning Objectives:**
 
-- Evaluate different multiplayer stack options and select the appropriate one for your game.
-- Integrate the chosen multiplayer stack into your Phaser.js game.
-- Implement real-time communication and synchronization for multiplayer functionality.
+- Evaluate different multiplayer stack options and select Colyseus for your game.
+- Integrate Colyseus into your Phaser.js game to enable multiplayer functionality.
+- Implement real-time communication and synchronization using Colyseus to ensure smooth multiplayer gameplay.
+
+Module Content:
+
+1. Introduction to Multiplayer Functionality
+
+   - Understand the importance and benefits of adding multiplayer functionality to your game.
+   - Explore different multiplayer stack options, such as Firebase, Socket.io, and Colyseus.
+   - Discuss the advantages of Colyseus for managing game state and enabling real-time communication.
+
+2. Setting Up a Local Colyseus Server
+
+   - Install Colyseus on your local development environment.
+   - Configure and run a local Colyseus server to test multiplayer functionality.
+   - Ensure seamless communication between your Phaser.js game and the Colyseus server.
+
+3. Integrating Colyseus into Your Phaser.js Game
+
+   - Refactor your Phaser.js game code to integrate Colyseus multiplayer functionality.
+   - Establish connections between the game clients and the Colyseus server.
+   - Implement basic synchronization of game state between multiple players.
+
+4. Real-Time Communication and Gameplay Experience
+
+   - Enhance real-time communication between players by implementing chat functionality.
+   - Explore techniques for handling player input and ensuring synchronized gameplay experience.
+   - Implement game events and notifications to provide a seamless multiplayer experience.
+
+5. Testing and Debugging Multiplayer Functionality
+   - Perform thorough testing of your multiplayer game to identify and fix potential issues.
+   - Use debugging tools and techniques to track and resolve synchronization or connection problems.
+   - Optimize network performance and minimize latency for a smooth multiplayer gameplay experience.
+
+By the end of this module, you will have successfully integrated Colyseus into your Phaser.js game and established a functional multiplayer experience. You will have the knowledge and skills to develop real-time multiplayer games using Colyseus as the multiplayer stack, paving the way for more advanced multiplayer features in subsequent modules.
 
 ### Module 3: Deployment and Hosting
 
-In this module, you will learn how to deploy and host your multiplayer game on Netlify. You will explore the deployment process and configure the necessary settings to ensure smooth deployment and accessibility of your game. Additionally, you will optimize your game for performance and address security considerations to protect against common web vulnerabilities.
+In this module, you will learn how to deploy and host your multiplayer game built with Phaser.js and Colyseus. You will go through the process of preparing your game for deployment, selecting an appropriate hosting solution, and configuring the server settings to ensure scalability and smooth gameplay for multiple concurrent players.
 
 **Module Learning Objectives:**
 
-- Deploy your multiplayer game using Netlify.
-- Optimize your game for performance and address security considerations.
-- Ensure compatibility and accessibility of your game across different browsers and platforms.
+- Prepare your multiplayer game for deployment to a live server.
+- Choose an appropriate hosting solution, such as AWS or Bluehost, for your Colyseus server.
+- Configure server settings and ensure proper scalability to handle multiple concurrent players.
+
+Module Content:
+
+1. Preparing the Multiplayer Game for Deployment
+
+   - Review the key considerations for deploying a multiplayer game built with Phaser.js and Colyseus.
+   - Optimize your game code and assets for production deployment.
+   - Implement security measures to protect against common web vulnerabilities.
+
+2. Selecting a Hosting Solution
+
+   - Evaluate different hosting options, such as AWS (Amazon Web Services), Bluehost, or other cloud providers.
+   - Compare the features, scalability, and pricing of each hosting solution.
+   - Choose the most suitable hosting solution based on your game's requirements, budget, and scalability needs.
+
+3. Setting Up and Configuring the Server
+
+   - Install and configure the necessary software and dependencies on your chosen hosting solution.
+   - Create and configure server instances to handle multiple concurrent players.
+   - Optimize server settings for performance, network bandwidth efficiency, and security.
+
+4. Deploying the Multiplayer Game
+
+   - Prepare your game files and assets for deployment to the live server.
+   - Set up the necessary network infrastructure to connect your Phaser.js game with the Colyseus server.
+   - Test the deployment to ensure seamless connectivity and functionality.
+
+5. Scaling and Load Testing
+
+   - Implement strategies to scale your multiplayer game for a larger number of concurrent players.
+   - Perform load testing to identify and address any performance bottlenecks or scalability issues.
+   - Optimize network bandwidth efficiency to enhance gameplay performance and minimize latency.
+
+6. Ensuring Compatibility and Accessibility
+   - Ensure compatibility of your multiplayer game across different browsers and platforms.
+   - Implement accessibility features to make your game inclusive and usable for a wide range of players.
+   - Address any compatibility or accessibility issues to provide a smooth and enjoyable gaming experience.
+
+By the end of this module, you will have successfully deployed and hosted your multiplayer game on a live server. You will have the knowledge and skills to optimize server settings, ensure scalability, and address compatibility and accessibility considerations. Your multiplayer game will be accessible to players from various platforms, providing a seamless and engaging multiplayer experience.
 
 ### Module 4: Getting to Know Phaser
 
@@ -56,8 +128,7 @@ In this module, you will focus on scaling and enhancing the multiplayer experien
 
 - Implement strategies to scale your multiplayer game for a larger number of concurrent users.
 - Optimize network bandwidth efficiency to enhance gameplay performance.
-
-Integrate player authentication and game data persistence using MongoDB.
+- Integrate player authentication and game data persistence using MongoDB.
 
 ## Time Estimate
 

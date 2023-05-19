@@ -62,3 +62,35 @@
   - Handling it manually is many more lines of code and resembles the code I was struggling with during my previous iteration
   - It looks like I will need to use plugins to get dragging working, so that is my next learning goal
   - Once I have a draggable box, then that is enough to start focusing on multiplayer
+
+### Making the box draggable
+
+- It feels like I have a clean deployment flow for now
+- I also had a helpful chat with Luis which I will note above
+- But for now the focus is on making the box draggable so I have something that can be made multiplayer
+- Oddly enough, making it draggable requires a plugin - I guess different input styles are varied enough to make this not default
+- So first I need to learn about plugins in Phaser
+
+**Determining how to implement a plugin**
+
+- They seem simple enough but I still am fuzzy on specifcally how to add one cleanly into my code
+- Starting by watching this tutorial where he is using Typescript and RexUI plugins to add a UI button https://www.youtube.com/watch?v=jYyUpFN89dg
+- use npm to install the plugin library
+- import the plugin in the scene where it's being used
+- register the plugin by adding "plugins" object in main.ts
+- this object needs key, plugin, mapping as values
+- he runs into a bug - says if you are not using webpack, maybe use the minified file imported directly from the web into the scene in the preload method, or maybe download it and put it in your project
+- then actually implementing the button was ... a lot
+
+**Realising I don't need a pluging and moving along**
+
+- I found the documentation for setDraggable
+- https://newdocs.phaser.io/docs/3.52.0/focus/Phaser.Input.InputPlugin-setDraggable
+- I fed the content to the AI and asked whether it thinks I need to use a plugin - I see the word plugin there but also these are the core phaser docs so...
+- "It appears that you can make a Game Object draggable in Phaser without necessarily needing a separate plugin. The setDraggable method is a part of the Phaser.Input.InputPlugin, which is built-in to Phaser and does not require additional installation or setup."
+- Not confusing at all that some plugins are built in...
+- Mainly this step was about learning how to best work with the AI to write phaser code.
+- if it's not working, I dig into the docs, and then feed the next docs that I think are relevant back to the AI
+- reading the phaser docs seems to vastly improve its ouput
+- once I get it working I ask it to explain the working code to me in detail
+- this means that I am generally able to notice where it did stuff I don't like

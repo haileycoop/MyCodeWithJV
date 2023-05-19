@@ -24,3 +24,63 @@ I had an initial chat with Luis about how to go about this:
 - When I want to deploy the app properly, there are more choices to make
 - Luis is a fan of docker / kubernetes since we are moving environments around to different places now
 - I could maybe install the colyseus on bluehost, or maybe on AWS since I have some credits
+
+## Implementing Colyseus in phaser-test dev local
+
+I asked the AI to tell me what to do. I pasted it's response but will also edit it to reflect what actually happened.
+
+---
+
+To start implementing Colyseus in your local development environment, follow these detailed steps:
+
+### Step 1: Install System Requirements\*\*
+
+- This was basics like npm, git, VScode...
+
+### Step 2: Set Up Colyseus Server Project\*\*
+
+1. Open your terminal or command prompt.
+2. Navigate to the root folder of your project "phaser-test" using the `cd` command. For example: cd /path/to/phaser-test
+3. Run the following command to create a new Colyseus server project:
+   npm create colyseus-app@latest ./server
+
+This command will create a new Colyseus server project in a directory named "server" within your "phaser-test" project folder. It will automatically install the necessary dependencies and set up the project structure for you.
+
+Notes
+
+- It set up a server folder with many sub-folders and files
+- I noticed that the server has its own separate package.json and .env files
+- This is similar to my previous firebase attempt, but I was trying to learn that all at once
+- I think this must be the right approach because in talking to Luis, I'm pretty sure he said that the server folder is often tucked into the app's file structure
+- So when developing locally, I will need to go into the server folder and start the server
+- Do I need to implement vite separately for the server?
+
+Results
+
+-
+
+### Step 3: Connect to the Colyseus Server
+
+To connect to the server from the client-side, you will need to use one of the available client-side SDKs provided by Colyseus. Follow the documentation of the specific SDK you choose to learn how to connect and interact with the server.
+
+### Step 4: Implement Room Definition
+
+In Colyseus, a Room is a game session that clients can join or create. You need to implement your own Room definition to handle your game sessions. This involves managing the game state, handling client connections and disconnections, and processing messages between the client and server.
+
+Refer to the Colyseus documentation or tutorials to learn more about implementing Room definitions and handling game sessions.
+
+### Step 5: Exchange Messages Between Client and Server
+
+To enable real-time communication between the client and server, you need to exchange messages. This allows clients to send inputs or actions to the server and receive updates or events from the server. Colyseus provides mechanisms for sending and receiving messages between the client and server, and you can define your own message formats and protocols.
+
+Consult the Colyseus documentation for details on how to exchange messages between the client and server.
+
+### Step 6: Understand State Synchronization
+
+Colyseus offers automatic state synchronization between the server and connected clients. This means that the server's game state is automatically synchronized with the clients, ensuring consistency across all connected players. You should familiarize yourself with how state synchronization works in Colyseus to ensure your multiplayer game operates as expected.
+
+Refer to the Colyseus documentation or tutorials for a deeper understanding of state synchronization in Colyseus.
+
+### Step 7: Experiment, Play, and Have Fun!
+
+Now that you have set up your Colyseus server project and learned the basics, it's time to experiment, play, and have fun! Start developing your multiplayer game using Colyseus, test it locally, and iterate on your design and features. Don't be afraid to try new ideas and learn from the process.

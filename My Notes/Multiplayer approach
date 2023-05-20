@@ -55,19 +55,86 @@ Notes
 - So when developing locally, I will need to go into the server folder and start the server
 - Do I need to implement vite separately for the server?
 
-Results
+Results - how to run the local server
 
--
+- when it's time to start the server:
+- navigate to ./server in a new terminal
+- run `npm start` and it will spin up locally
 
 ### Step 3: Connect to the Colyseus Server
 
 To connect to the server from the client-side, you will need to use one of the available client-side SDKs provided by Colyseus. Follow the documentation of the specific SDK you choose to learn how to connect and interact with the server.
+
+Notes
+
+- I was able to do this by working with the AI to add colyseus code to main.ts
+- I focused on resolving all of the IDE errors first
+- then I focused on the warnings
+- this led me to a place where I could get the app working and logging
+- but it became clear that the app was not fully wired up and that I needed to start modifying the code
+- this eventually led me to a place that I now realise is step 4
 
 ### Step 4: Implement Room Definition
 
 In Colyseus, a Room is a game session that clients can join or create. You need to implement your own Room definition to handle your game sessions. This involves managing the game state, handling client connections and disconnections, and processing messages between the client and server.
 
 Refer to the Colyseus documentation or tutorials to learn more about implementing Room definitions and handling game sessions.
+
+Notes:
+
+- After feeding the AI lots of documentation and the templates that were created when I installed colyseus, I was able to get it to make a list of changes that I would need to make to get my current game working as multiplayer
+- I think some of these steps bleed into later steps of the current plan, so I will keep an eye on this as I go **<= LOOK HERE FIRST**
+- Here is the current list, which I will work through and update as needed
+
+#### Wiring up multiplayer between client and server
+
+To change the current behavior in main.ts into a multiplayer game using the server-side files, you need to perform the following steps:
+
+##### Import the necessary server-side files and configure the server-side environment.
+
+- I believe this is done but I will probably find out stuff as I go that still needs doing
+
+##### Update the server-side MyRoom class to handle multiplayer game logic.
+
+- HERE: This is where I am leaving off **<= THEN FOCUS EFFORT HERE**
+
+a. Implement game state management using @colyseus/schema to define the synchronized state of the room.
+
+b. Modify the onCreate method to initialize the game state and define message handlers for game events.
+
+c. Update the onJoin and onLeave methods to handle player connections and disconnections.
+
+d. Implement game-specific logic within the message handlers to update the game state based on player actions.
+
+e. Add any additional methods or callbacks required for the game mechanics.
+
+##### Modify the server-side app.config.ts file to import and define the MyRoom class.
+
+##### Customize the MyRoomState schema in MyRoomState.ts to reflect the game's data structure and state.
+
+##### Update the client-side main.ts to connect to the Colyseus server, join or create a room, and handle room events.
+
+a. Update the import statements to include the necessary Colyseus and Phaser libraries.
+
+b. Modify the connection URL in the Client constructor to match the server's address.
+
+c. Handle room events such as state changes, receiving messages from the server, errors, and client disconnections.
+
+d. Pass the Colyseus room instance to the GameScene constructor and store it as a property.
+
+##### Update the GameScene class in the client-side main.ts to integrate with the multiplayer functionality.
+
+a. Store the Colyseus room instance as a property within the GameScene class.
+
+b. Modify the create method to handle game initialization and setup.
+
+c. Implement event handlers or listeners for player actions, such as dragging objects, and communicate these actions to the server through the Colyseus room instance.
+
+d. Update the update method to reflect the synchronized game state received from the server.
+
+##### Customize the remaining Phaser game code and assets as needed for your specific multiplayer game.
+
+Remember to adapt the code and steps to match your game's requirements and design.
 
 ### Step 5: Exchange Messages Between Client and Server
 

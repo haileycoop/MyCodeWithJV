@@ -100,11 +100,39 @@ To change the current behavior in main.ts into a multiplayer game using the serv
 
 a. Implement game state management using @colyseus/schema to define the synchronized state of the room.
 
+- Notes on how colyseus works
+
+  - The @colyseus/schema library provides a way to define schema classes that represent the data structure of your game state. By using these schema classes, you ensure that the state is synchronized automatically between the server and connected clients.
+  - When a client connects to the server, Colyseus automatically assigns a unique sessionId to that client. The sessionId is used to identify and manage the client within the room.
+
+- Steps to take
+
+  - Use `@colyseus/schema` which can be installed as an npm package
+  - Import the schema and required types into the MyRoom.ts file on the server side
+  - Define a class that extends Schema to represent my game state
+  - In the onCreate method of the MyRoom class, initialize the game state using the MyRoomState schema
+  - Access and modify the game state within the MyRoom class methods or event handlers
+
+- Result: The default colyseus template files had already covered all of this, it turns out, and the AI was repeating work in a more convoluted way
+
 b. Modify the onCreate method to initialize the game state and define message handlers for game events.
 
 c. Update the onJoin and onLeave methods to handle player connections and disconnections.
 
 d. Implement game-specific logic within the message handlers to update the game state based on player actions.
+
+- Steps to take
+
+  - I feel like I am doing b, c, and d together
+  - Here's what the AI suggests as a first test
+
+    i. Client Responsibilities: - The client should create and initialize the box at a predefined initial position. - When the box is moved by the client, the client should send a message to the server with the updated position.
+
+    ii. Server Responsibilities: - The server should receive the position updates from clients and update the game state (box position) accordingly. - After receiving an updated position from a client, the server should broadcast the updated position to all connected clients.
+
+    iii. Implementation Steps: - Modify the `MyRoomState` class to include a property for the box's position, such as `@type("object") boxPosition: { x: number, y: number }`. - In the `onCreate` method of `MyRoom`, initialize the game state by setting the initial position for the `boxPosition` property. - Add a message handler for the box movement event in the `onCreate` method. This handler should receive the updated box position from the client and update the `boxPosition` property in the game state. - When the `boxPosition` property is updated in the game state, broadcast the updated position to all connected clients using `this.broadcast("boxPositionUpdate", updatedPosition)`.
+
+    By following this approach, the initial position of the box is set by the client, ensuring consistency across all clients. After that, the server manages the box's position, and updates are sent from the client to the server and then broadcasted to all clients for synchronization.
 
 e. Add any additional methods or callbacks required for the game mechanics.
 

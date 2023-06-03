@@ -107,3 +107,376 @@ For a deep understanding of these concepts, I propose the following course outli
 2. **Activity**: Deep dive into how Phaser.js interacts with JavaScript, and how 'this' behaves within Phaser.js.
 3. **Project**: Build a simple game using Phaser.js, focusing on event handling and maintaining the correct context of 'this'.
 4. **Assessment**: Review and feedback on the project.
+
+# Activity: Introduction to JavaScript and Object-Oriented Programming in JavaScript
+
+## Learning Objectives
+
+- Understand the basics of JavaScript syntax and programming constructs.
+- Understand the concept of Object-Oriented Programming (OOP) in JavaScript.
+- Get hands-on practice with JavaScript syntax and creating JavaScript objects.
+
+## Activity Plan
+
+### Part 1: JavaScript Basics
+
+1. **Reading**: Introduction to JavaScript and its syntax - covering variables, data types, operators, control structures, and functions.
+2. **Exercise**: Complete exercises focusing on JavaScript basics.
+
+### Part 2: JavaScript and the Browser
+
+1. **Reading**: Introduction to how JavaScript interacts with the browser - Document Object Model (DOM), event handling, and manipulating HTML/CSS using JavaScript.
+2. **Exercise**: Build a simple web page with basic DOM manipulation and event handling.
+
+### Part 3: Object-Oriented Programming in JavaScript
+
+1. **Reading**: Introduction to Object-Oriented Programming in JavaScript - Understanding objects, properties, methods, constructors, `this` keyword, prototype inheritance.
+2. **Exercise**: Build a simple object-oriented JavaScript program - a "library" system where you can add, remove, or modify books.
+
+## Additional Resources
+
+- **Resource**: [MDN JavaScript Guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide) (Free)
+- **Resource**: [You Don't Know JS (book series)](https://github.com/getify/You-Dont-Know-JS) (Free)
+- **Resource**: [Eloquent JavaScript (book)](http://eloquentjavascript.net/) (Free)
+
+## Assessment
+
+You'll be assessed on your understanding of JavaScript basics and OOP concepts, as well as your ability to apply these concepts in practical exercises. Your "library" system program will be reviewed for its design and effective use of JavaScript OOP principles.
+
+# Push-back prompt
+
+I would like to skip to part 3 of this plan and focus there. I think I know enough about parts 1 and 2. I will ask you if I get stuck.
+
+For part 3, rather than read outside resources, I am going to ask you to make readings specifically for me. I would like you to write me my own custom learning book about:
+
+> Introduction to Object-Oriented Programming in JavaScript - Understanding objects, properties, methods, constructors, `this` keyword, prototype inheritance.
+
+Please start by writing an outline of this book. Feel free to include assessments in each step.
+
+# Book: Understanding Object-Oriented Programming (OOP) in JavaScript
+
+## Chapter 1: Introduction to OOP in JavaScript
+
+- Introduction to Object-Oriented Programming
+- Procedural vs OOP
+- Overview of OOP in JavaScript
+
+## Chapter 2: JavaScript Objects
+
+- Understanding JavaScript objects
+- Object properties and methods
+- Accessing, adding, and deleting properties
+- Enumerating properties
+- **Assessment**: Exercises on JavaScript objects
+
+## Chapter 3: Constructors and Prototypes
+
+- Understanding 'constructor' in JavaScript
+- The 'new' keyword and instance creation
+- Understanding 'prototype' in JavaScript
+- Prototype-based inheritance
+- **Assessment**: Exercises on constructors and prototypes
+
+## Chapter 4: The 'this' Keyword in JavaScript
+
+- Understanding 'this' keyword
+- 'this' in global scope, object methods, constructors, and event handlers
+- Binding 'this'
+- **Assessment**: Exercises on the 'this' keyword
+
+## Chapter 5: Prototype Inheritance and Classes
+
+- In-depth look at Prototype inheritance
+- Introduction to ES6 Classes
+- Class inheritance using 'extends'
+- **Assessment**: Exercises on prototype inheritance and classes
+
+## Chapter 6: Practical OOP in JavaScript
+
+- Use cases for OOP in JavaScript
+- Real-world examples and projects
+- **Assessment**: Mini-project - Building a JavaScript application using OOP principles
+
+# Response
+
+Please write a more detailed outline for Chapter 1, listing out the various sections
+
+# Chapter 1: Introduction to OOP in JavaScript
+
+## Summary
+
+This detailed breakdown of the first chapter will provide you a foundational understanding of Object-Oriented Programming, its comparison with other programming paradigms, and how it is implemented in JavaScript. The assessment at the end will help ensure that you've grasped the key concepts before moving onto the next chapter.
+
+### Section 1: Understanding Programming Paradigms
+
+- Definition of Programming Paradigms
+- Brief overview of different programming paradigms
+
+### Section 2: Introduction to Object-Oriented Programming
+
+- Definition of Object-Oriented Programming (OOP)
+- The four principles of OOP: Encapsulation, Abstraction, Inheritance, and Polymorphism
+
+### Section 3: Procedural vs OOP
+
+- Brief explanation of Procedural Programming
+- Comparison between Procedural Programming and OOP
+- Advantages and disadvantages of OOP
+
+### Section 4: Overview of OOP in JavaScript
+
+- Understanding how JavaScript implements OOP
+- Brief introduction to JavaScript's Prototype-based OOP
+
+### Section 5: Object-Oriented vs Functional Programming in JavaScript
+
+- A comparison between OOP and Functional Programming
+- When to use each paradigm in JavaScript
+
+### Assessment: Questions to Test Understanding
+
+- Multiple choice and true/false questions covering the concepts in this chapter.
+
+## 1. Understanding Programming Paradigms
+
+_Understanding the different programming paradigms will give you a more versatile set of tools for solving programming problems, as different paradigms are suited to different types of tasks._
+
+Programming paradigms are established models or styles of programming that have distinct features and methods for structuring and organizing code. They provide a way to conceptualize how the code you write interacts and relates to other pieces of code.
+
+There are multiple programming paradigms, and different languages are designed to follow specific paradigms, although many modern languages are multi-paradigmatic. Here are a few common paradigms:
+
+- **Procedural Programming**: This is one of the oldest paradigms, used by languages like C and Pascal. It organizes code into procedures, which are just blocks of code that optionally take in inputs (parameters) and return outputs.
+
+- **Object-oriented Programming (OOP)**: Used by languages like Java, C++, Python, and JavaScript, this paradigm organizes code into objects, which contain data (properties) and functions (methods).
+
+- **Functional Programming**: In this paradigm, used by languages like Lisp, Haskell, and also available in JavaScript, code is organized into functions, and there is a heavy emphasis on immutability and avoiding shared state.
+
+- **Declarative Programming**: In this paradigm, rather than explicitly instructing "how" to achieve something (the control flow), you specify "what" you want to achieve. SQL and HTML are good examples of declarative languages.
+
+Remember, these paradigms are not mutually exclusive, and often, a single piece of software will incorporate elements of multiple paradigms. JavaScript, for example, is a multi-paradigm language that supports procedural, object-oriented, and functional programming.
+
+## 2. Introduction to Object-Oriented Programming
+
+_This section introduces the core concepts of Object-Oriented Programming and lays the foundation for the upcoming sections, where we will delve deeper into each of these principles._
+
+Object-Oriented Programming (OOP) is a programming paradigm that uses "objects" to design applications and software. These objects represent real-world entities or concepts, making OOP a highly intuitive and practical approach for many applications.
+
+In the context of programming, an **object** is an entity that combines two main components:
+
+- **Properties**: These are data or variables that belong to the object. For example, a `Car` object might have properties such as `color`, `brand`, and `model`.
+
+- **Methods**: These are functions that belong to the object. These methods represent the behaviors or capabilities of the object. For instance, a `Car` object might have methods such as `drive()`, `park()`, or `refuel()`.
+
+In OOP, objects are instances of classes, which can be thought of as blueprints for creating objects. However, JavaScript takes a slightly different approach, which we'll discuss later in this book.
+
+The main principles of OOP are **Encapsulation**, **Abstraction**, **Inheritance**, and **Polymorphism**:
+
+- **Encapsulation**: This principle is about bundling the data (properties) and the methods that manipulate the data into a single unit known as an object. Encapsulation also involves hiding the internal state of an object and requiring all interaction to be performed through the object's methods.
+
+- **Abstraction**: This involves creating simple models of more complex real-world objects. The idea is to reduce complexity by exposing only the necessary details of an object to the outside world.
+
+- **Inheritance**: This is a mechanism where you can create a new class as a modified version of an existing class; this makes it easier to reuse and recycle code.
+
+- **Polymorphism**: This principle allows you to use an entity in multiple forms. For instance, if you have a `Parent` class and a bunch of child classes (`Child1`, `Child2`, etc.), each with a method of the same name, polymorphism allows you to use the method of a `Child` class even when you treat the child instance as an instance of the `Parent` class.
+
+These four principles make code easier to manage, more flexible, and more maintainable. They also help improve the efficiency of collaboration on large projects.
+
+## 3. Overview of OOP in JavaScript
+
+_This section provides a high-level overview of how JavaScript uses the concepts of object-oriented programming. We'll go into each of these concepts in more detail in the coming chapters._
+
+JavaScript is a multi-paradigm language that supports procedural, functional, and object-oriented programming. It's important to note that JavaScript is not a class-based object-oriented language, but a prototype-based one. This means that in JavaScript, objects inherit functionality from other objects, via their prototypes, as opposed to most class-based languages where objects are defined by classes, and classes inherit from other classes.
+
+Here's a basic overview of how object-oriented programming is handled in JavaScript:
+
+- **Objects**: Everything in JavaScript is an object (except for primitive data types - undefined, null, boolean, number, and string). Objects in JavaScript can be thought of as collections of properties.
+
+- **Properties**: In JavaScript, a property is a variable that is attached to an object. Properties can hold values of any type, including other objects, which allows for building complex data structures.
+
+- **Methods**: Methods in JavaScript are properties that hold function values.
+
+- **Prototype**: Each JavaScript object has a link to a prototype object. When trying to access a property that does not exist in an object, JavaScript tries to find this property in the prototype of this object.
+
+- **Constructor function**: This is a regular function used as a constructor to create objects using the `new` keyword. The constructor's name usually starts with a capital letter to distinguish it from other, non-constructor functions.
+
+- **`this` Keyword**: In JavaScript, `this` is a special variable that’s created for every execution context (every function). It gives you access to the object a method is called on, or the object a constructor function is used to create.
+
+- **Inheritance and the Prototype Chain**: Inheritance in JavaScript is based on prototypes. The prototype object of any object can be viewed as its "parent". If a property is not found on the current object, JavaScript will look up the prototype chain until it either finds the requested property or reaches an object with a null prototype.
+
+The way JavaScript handles OOP is quite different compared to languages like Java, C++, or Python. But it gives JavaScript a lot of flexibility and makes it incredibly powerful.
+
+## 4. Object and Property Creation in JavaScript
+
+_This section provides a brief overview of how objects are created in JavaScript and how properties can be added to them. We'll delve into these topics in more detail in the next chapters._
+
+JavaScript provides multiple ways to create objects and add properties to them. Here's a quick overview:
+
+### Object Literals
+
+The simplest way to create an object in JavaScript is by using an object literal, which is defined within curly braces `{}`. Within the braces, properties and their values are defined as `key: value` pairs, separated by commas.
+
+```javascript
+let dog = {
+  name: "Fido",
+  breed: "Labrador",
+  age: 5,
+};
+```
+
+In this example, dog is an object with properties name, breed, and age.
+
+### Constructor Functions
+
+Constructor functions are used to create multiple similar objects. The convention is to capitalize the function name.
+
+```javascript
+function Dog(name, breed, age) {
+  this.name = name;
+  this.breed = breed;
+  this.age = age;
+}
+
+let fido = new Dog("Fido", "Labrador", 5);
+```
+
+In this example, Dog is a constructor function that constructs dog objects. We create a new dog instance by using the new keyword.
+
+## Object.create Method
+
+The Object.create method is used to create a new object and set its prototype to a specified object.
+
+```javascript
+let animal = {
+  species: "Animal",
+  describe: function () {
+    return `This is a ${this.species}.`;
+  },
+};
+
+let dog = Object.create(animal);
+dog.species = "Dog";
+```
+
+In this example, dog is an object with animal as its prototype. The dog object inherits the describe method from animal.
+
+### Adding Properties to Objects
+
+Properties can be added to objects even after they've been created. This can be done directly, or through the object's prototype.
+
+```javascript
+dog.color = "Black"; // Adds a new property 'color' to 'dog'
+```
+
+In this example, we add a color property to the dog object. Now the dog object has a color property in addition to species.
+
+These are just a few ways to create objects and properties in JavaScript. Depending on the situation, one method may be more suitable than others. In the following sections, we'll discuss when to use each method, and explore more features and capabilities of objects in JavaScript.
+
+## 5. Defining Methods in JavaScript
+
+Methods are functions that are associated with an object. They represent behaviors or actions that an object can perform. In JavaScript, methods can be defined in multiple ways. Let's explore some of these:
+
+### Method Definition in an Object Literal
+
+You can define methods directly within an object literal by associating a key with a function value.
+
+\```javascript
+let dog = {
+name: 'Fido',
+breed: 'Labrador',
+age: 5,
+bark: function() {
+console.log('Woof!');
+}
+};
+
+dog.bark(); // Output: 'Woof!'
+\```
+
+In this example, `bark` is a method of the `dog` object.
+
+### Method Definition in a Constructor Function
+
+Methods can also be defined within constructor functions.
+
+\```javascript
+function Dog(name, breed, age) {
+this.name = name;
+this.breed = breed;
+this.age = age;
+this.bark = function() {
+console.log('Woof!');
+}
+}
+
+let fido = new Dog('Fido', 'Labrador', 5);
+fido.bark(); // Output: 'Woof!'
+\```
+
+In this example, every `Dog` instance we create with the constructor function will have its own `bark` method.
+
+### Method Definition Using the Prototype
+
+You can add methods to the prototype of an object. All instances of that object will then have access to that method.
+
+\```javascript
+function Dog(name, breed, age) {
+this.name = name;
+this.breed = breed;
+this.age = age;
+}
+
+Dog.prototype.bark = function() {
+console.log('Woof!');
+}
+
+let fido = new Dog('Fido', 'Labrador', 5);
+fido.bark(); // Output: 'Woof!'
+\```
+
+In this example, the `bark` method is added to the `Dog` prototype, so all `Dog` instances have access to it. This is a more memory-efficient way of adding methods, as each instance doesn't have its own copy of the method.
+
+Remember that JavaScript objects are dynamic and you can add or remove methods even after an object has been created. The way you define methods may change based on the requirements of your code.
+
+## Chapter 1 Assessment: Introduction to OOP in JavaScript
+
+Please answer the following questions to test your understanding of the concepts covered in this chapter.
+
+1. **What is Object-Oriented Programming (OOP)?**
+   A) A type of programming language.
+   B) A programming paradigm based on the concept of "objects".
+   C) A JavaScript specific programming style.
+   D) A data structure in JavaScript.
+
+2. **What is a significant difference between procedural programming and object-oriented programming?**
+   A) Procedural programming is focused on procedures or actions, while object-oriented programming is focused on data or objects.
+   B) Procedural programming is used in JavaScript, while object-oriented programming is used in Python.
+   C) Procedural programming cannot use functions, while object-oriented programming can.
+   D) There are no significant differences.
+
+3. **What is an 'object' in JavaScript?**
+   A) Any variable.
+   B) A fundamental data type.
+   C) An unordered collection of related data, of primitive or reference types, in the form of "key: value" pairs.
+   D) An ordered list of items.
+
+4. **What is a 'method' in JavaScript?**
+   A) A function associated with an object.
+   B) Any function in JavaScript.
+   C) A way to define variables.
+   D) A data type in JavaScript.
+
+5. **What is the purpose of a constructor function in JavaScript?**
+   A) To create multiple objects of the same type.
+   B) To generate random values.
+   C) To iterate through an array.
+   D) To compare two values.
+
+6. **True or False? Every instance of an object created with a constructor function has its own copy of the methods defined in that function.**
+   A) True
+   B) False
+
+7. **True or False? Adding a method to the prototype of an object is more memory efficient than defining it in a constructor function because each instance of the object does not have its own copy of the method.**
+   A) True
+   B) False
+
+Write your answers and then compare them to the answer key at the end of the book to check your understanding.

@@ -480,3 +480,66 @@ Please answer the following questions to test your understanding of the concepts
    B) False
 
 Write your answers and then compare them to the answer key at the end of the book to check your understanding.
+
+# Pivot: focus on execution context
+
+I never actually read the above. It sort of dropped in that execution order / context was the issue. I went onn a walk with the dog and listened to some videos. This one was good:
+
+https://www.youtube.com/watch?v=Fd9VaW0M7K4
+
+This let me frame the problem to the AI better. I had it summarise the execution order of main.ts for me.
+
+It started recommending approaches but also cautioned that Phaser has its own lifecycle management approach.
+
+I asked it to read this page of Phaser notes and recommend an approach:
+
+https://rexrainbow.github.io/phaser3-rex-notes/docs/site/scene/
+
+That got it to create code that worked immediately.
+
+I asked it to write an assessment to test what I had just learned. See below. I got 100% but I had to think about it.
+
+# Assessment: Multiple Choice Questions
+
+1. Which of the following is not a lifecycle event in Phaser 3?
+
+   A. create
+   B. update
+   C. setup
+   D. preload
+
+2. In the Phaser 3 game framework, when is the `create()` method called?
+
+   A. After all assets specified in `preload()` have been loaded
+   B. Before the `preload()` method
+   C. At the very end of the game cycle
+   D. Only when explicitly called by the developer
+
+3. The `this` keyword in JavaScript refers to the:
+
+   A. Next object in the call stack
+   B. Object that is executing the current function
+   C. Function being called
+   D. Global window object
+
+4. In JavaScript, what does the `bind()` method do?
+
+   A. It permanently sets the context of `this` for a function
+   B. It creates a copy of a function with a new context
+   C. It connects two JavaScript files together
+   D. It creates a new instance of a class
+
+5. Which of the following is not true about the TypeScript type checker?
+
+   A. It checks if the types of variables are compatible with their uses
+   B. It throws runtime errors if type incompatibilities are found
+   C. It helps catch potential type-related bugs during development
+   D. It allows for type guarding, which can ensure a variable of a certain type within a block of code
+
+### Answers:
+
+1. C. setup
+2. A. After all assets specified in `preload()` have been loaded
+3. B. Object that is executing the current function
+4. A. It permanently sets the context of `this` for a function
+5. B. It throws runtime errors if type incompatibilities are found

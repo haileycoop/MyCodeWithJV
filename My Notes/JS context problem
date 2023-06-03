@@ -1,0 +1,109 @@
+# Javascript Context problem
+
+## Overview
+
+- I've run into a problem that seems like a recurring gap in my code knowledge that is also hard for the AI to parse
+- I want to build a mini course around skilling myself up on this aspect of Javascript so I can better troubleshoot it
+
+## Problem as posed in the AskJV discord channel
+
+Hi @JV - I am very stuck on an issue that I think maybe ChatGPT is bad at diagnosing.
+
+The issues is in this file:
+
+https://github.com/haileycoop/phaser-test/blob/main/src/main.ts
+
+In the handleDrag function, it first checks to see if this.room evaluates to true. It wants to know whether a room exists on the server before attempting to send state to the server
+
+For some reason, in the context of handleDrag, this.room evaluates to undefined
+
+Whereas within the oncreate() function, this.room evaluates to true and outputs json in the console
+
+I've run into this before with chatGPT. It gives lots of very hacky workarounds to try and known of them work.
+
+I feel like there's some JS fundamentals I'm lacking about context and why this.room would evaluate one way in create() and another way in handleDrag()
+
+What should I learn to try to fix this?
+
+You can quickly view the app here: https://haileycoop-phaser-test.netlify.app/
+
+But since the Colyseus server only exists on my local, you won't be able to replicate the issue (you won't be able to make this.room evaluate to true at all)
+
+## Prompt for a new channel with the AI
+
+### Experience level
+
+Hello. I am a beginner coder, but I have some ability with github, VS code, and terminal on mac. I have mostly learned javascript.
+
+### Problem with Javascript contex
+
+I seem to run into a similar problem quite often in Javascript. I think it has to do with the concept of "context" but I am not sure.
+
+It might be that some variable is evaluating to true in one context, but false or falsey in another. And I can't understand why this would be the case.
+
+Also, when I ask for support from the AI assistant, it often cannot easily solve this problem for me. It seems to be missing some ability to see the larger system.
+
+### Specific example - room.id in main.ts
+
+I am providing a specific example. I am not asking you to solve this specific code problem or write new code. Please do not try to rewrite the code and do not suggest solutions. Remember that you are an AI tutor.
+
+My hope is that providing a specific example will make you more likely to steer me towards the right learning.
+
+In this example, main.ts is a file that is part of Phaser.js game app. It contains most of the game logic. It interacts with another file within the server called MyRoom.ts, which is part of the Colyseus multiplayer server framework.
+
+Main.ts initiates the game, and then asks MyRoom.ts to create a new game room. MyRoom.ts and the Colyseus code will generate a new game room and assign it a configuration. This is stored in main.ts as `this.room`. This is provided back to main.ts.
+
+In the oncreate() function of main.ts, room.id evaluates to true as expected, which is proven by the fact that it logs out the room details in the browser console.
+
+Further down in the file, there is a function called handleDrag(). The function is called when the user drags a box around on the screen.
+
+As part of handleDrag, it sends the updated position of the box to the Colyseus server via MyRoom.ts, so that other players will then see those changes to the position of the box.
+
+Before it attempts to send the box position, it first checks if this.room evaluates to true. In the current code, it evaluates to undefined. Therefore the position is not sent to the server.
+
+I do not understand why it evaluates to true in one context, and to undefined in another.
+
+#### Current main.ts code
+
+[Full code was provided to the AI, which is this file on June 3rd, 2023 - https://github.com/haileycoop/phaser-test/blob/main/src/main.ts]
+
+### Learning goal - understand the underlying rules of Javascript that cause this
+
+While I would love to solve this issue one time, it is more important to me to understand what causes it in the first place, so I can avoid or fix it in the future.
+
+First, please summarise the key concepts in play in this problem.
+
+Then design a course that will help me learn those concepts.
+
+# Course: Understanding JavaScript Context and the 'this' Keyword
+
+Thanks for your detailed explanation and sharing the context around your problem. From your description, it seems the key concept in play here is JavaScript's 'context' or 'this' keyword, and how it behaves differently in various situations. In JavaScript, the value of 'this' depends on how a function is called, which can be confusing.
+
+Given the code snippet you've provided, it appears that the context of 'this' might be changing from the 'GameScene' class to another context, which is why 'this.room' becomes undefined in the 'handleDrag()' function. This situation could be due to how JavaScript treats the 'this' keyword inside event handlers or callbacks, or due to the way Phaser.js sets up the game and handles interactions.
+
+For a deep understanding of these concepts, I propose the following course outline:
+
+## Module 1: JavaScript Basics and Advanced Concepts
+
+1. **Activity**: Introduction to JavaScript, covering all the fundamental concepts and the basics of Object-Oriented Programming (OOP) in JavaScript.
+2. **Activity**: In-depth exploration of 'this' keyword in JavaScript - how it works, what it refers to in various contexts, and why it behaves differently in different scenarios.
+3. **Assessment**: Quiz on JavaScript Basics and 'this' keyword.
+
+## Module 2: Event Handling in JavaScript
+
+1. **Activity**: Understanding event handling in JavaScript - how it works and how 'this' behaves within event handlers.
+2. **Activity**: Learning about call(), apply(), and bind() methods, and how they can control the context of 'this'.
+3. **Assessment**: Exercises to practice event handling and controlling 'this' using call(), apply(), and bind() methods.
+
+## Module 3: Understanding Asynchronous JavaScript
+
+1. **Activity**: Introduction to Asynchronous JavaScript - Callbacks, Promises, and Async/Await.
+2. **Activity**: Understanding how 'this' behaves in Asynchronous JavaScript and how to control its context.
+3. **Assessment**: Quiz and practical exercises on Asynchronous JavaScript and 'this'.
+
+## Module 4: JavaScript in the Phaser.js Context
+
+1. **Activity**: Overview of Phaser.js and its event handling mechanism.
+2. **Activity**: Deep dive into how Phaser.js interacts with JavaScript, and how 'this' behaves within Phaser.js.
+3. **Project**: Build a simple game using Phaser.js, focusing on event handling and maintaining the correct context of 'this'.
+4. **Assessment**: Review and feedback on the project.

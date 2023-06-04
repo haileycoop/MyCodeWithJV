@@ -150,4 +150,30 @@ Remember to replace 8000 and 2567 with the ports you're using for your applicati
 
 ### Step 6: Adjust Phaser Client Connection
 
-You will need to adjust your Phaser client to connect to this Dockerized server. In the Phaser
+You will need to adjust your Phaser client to connect to the Dockerized server. In the Phaser client code, you should update the connection URL to point to the Docker container's address.
+
+Assuming your Docker container is running on the same machine, you can update the connection URL to localhost and the port number you exposed when running the Docker container (in the previous step, it was 8000).
+
+For example, if your original connection URL in the Phaser client was:
+
+`const gameServer = new Colyseus.Client("ws://localhost:2567");`
+
+You can update it to:
+
+`const gameServer = new Colyseus.Client("ws://localhost:8000");`
+
+Make sure the port number in the connection URL matches the one you specified when running the Docker container.
+
+### Step 7: Test Your Containerized Application
+
+After adjusting the connection URL in the Phaser client, test your application to ensure that it still works as expected. Launch the Phaser client and interact with the game to verify that it can connect to the Dockerized Colyseus server and maintain multiplayer functionality.
+
+### Conclusion
+
+Once you've successfully Dockerized your Colyseus server, you can easily deploy it on any server or cloud platform that supports Docker. The Docker container encapsulates your server application and its dependencies, making it more portable and easier to manage. This allows you to deploy and scale your multiplayer game more efficiently.
+
+# Next
+
+TODO: In app.config.ts, there is a message that recommends protecting a route with a password, with a link to more info. Do that before deploying to the web
+
+I will also need to work out how to manage different environment variables depending on DEV vs PROD. This will include where the client looks to find Colyseus

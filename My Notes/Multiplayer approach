@@ -136,14 +136,13 @@ d. Implement game-specific logic within the message handlers to update the game 
 
     iii. Implementation Steps:
 
-    **HERE** <======
-
     - I left off here just trying to get the server to log out the position of the box as delivered by the client
     - after spending a lot of time changing server-side code, I narrowed down the issue to the handleCreate function in the client code
     - For some reason, 'this.room' wasn't evaluating to true even though it does elsewhere, so the function was failing
     - ChatGPT is not very helpful with context-based errors, so I asked Josh for help and I need to stop now
-
-    ***
+    - I ended up drilling down on the problem on my own, and the story of that can be found in "JS Context Problem in my notes"
+    - The server now logs out the position of the box, but is not passing updates back to other clients
+    - If I can get that working reasonably well, then it will be back to deployment land and getting colyseus working on the web
 
     - Modify the `MyRoomState` class to include a property for the box's position, such as `@type("object") boxPosition: { x: number, y: number }`.
     - In the `onCreate` method of `MyRoom`, initialize the game state by setting the initial position for the `boxPosition` property.
@@ -152,11 +151,16 @@ d. Implement game-specific logic within the message handlers to update the game 
 
     By following this approach, the initial position of the box is set by the client, ensuring consistency across all clients. After that, the server manages the box's position, and updates are sent from the client to the server and then broadcasted to all clients for synchronization.
 
-e. Add any additional methods or callbacks required for the game mechanics.
+    - I didn't follow these steps exactly but it works now
+    - boxPosition is synced across multiple clients on my local!
 
 ##### Modify the server-side app.config.ts file to import and define the MyRoom class.
 
+- pretty sure this got down out of the box
+
 ##### Customize the MyRoomState schema in MyRoomState.ts to reflect the game's data structure and state.
+
+- got done along the way
 
 ##### Update the client-side main.ts to connect to the Colyseus server, join or create a room, and handle room events.
 
@@ -168,6 +172,8 @@ c. Handle room events such as state changes, receiving messages from the server,
 
 d. Pass the Colyseus room instance to the GameScene constructor and store it as a property.
 
+- all got done along the way
+
 ##### Update the GameScene class in the client-side main.ts to integrate with the multiplayer functionality.
 
 a. Store the Colyseus room instance as a property within the GameScene class.
@@ -177,6 +183,8 @@ b. Modify the create method to handle game initialization and setup.
 c. Implement event handlers or listeners for player actions, such as dragging objects, and communicate these actions to the server through the Colyseus room instance.
 
 d. Update the update method to reflect the synchronized game state received from the server.
+
+- got done along the way
 
 ##### Customize the remaining Phaser game code and assets as needed for your specific multiplayer game.
 
@@ -197,3 +205,5 @@ Refer to the Colyseus documentation or tutorials for a deeper understanding of s
 ### Step 7: Experiment, Play, and Have Fun!
 
 Now that you have set up your Colyseus server project and learned the basics, it's time to experiment, play, and have fun! Start developing your multiplayer game using Colyseus, test it locally, and iterate on your design and features. Don't be afraid to try new ideas and learn from the process.
+
+- this is all very general

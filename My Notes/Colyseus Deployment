@@ -1,0 +1,153 @@
+# Overview
+
+I will use this file to manage the process of getting the entire app deployed to the web, including the Colyseus server, which I see as the hard part right now.
+
+I want to do this with Docker because Luis said so :D
+
+Initially, I am focused on getting Colyseus working on my local inside of Docker.
+
+# Initial prompt
+
+## Project
+
+I would like you to design a project for me
+
+## Experience level
+
+I am a beginner coder, but I have some ability with github, VS code, and terminal on mac. I have mostly learned javascript.
+
+I do not have
+
+- A basic understanding of how Docker works
+- Docker installed on my machine
+
+## Current status
+
+- I have successfully got a multiplayer browser game running on my local
+- It uses Phaser JS as the client, and Colyseus as the server
+- The game is very simple - there is one box that players can drag around
+
+## Setting up Colyseus within Docker
+
+- I want to eventually deploy the Colyseus server to the web alongside the Phaser client so that the game can actually be played by multiple players over the internet
+- To do this, I plan to deploy Colyseus inside Docker, and then deploy it to a web server within the Docker instance
+- For now, my focus is just to put Colyseus within Docker on my local
+- I have never worked with Docker before
+- I really want this project only to focus on putting Colyseus in a docker instance on my local and get that working
+
+## Request
+
+Please write a detailed project plan for how I can do this
+
+Please read my repo and regenerate your response with this in mind:
+
+https://github.com/haileycoop/phaser-test
+
+In particular I want to understand:
+
+- Which parts of my app will actually be contained within the docker
+- How I can set up my project in my local environment properly, to account for some parts of the app living within docker and some living within the client
+
+Please save the plan in Markdown as a code block
+
+Please ensure you escape out any multi-line code snippets so that they do not break the code block
+
+# Project: Dockerizing Your Colyseus Server
+
+I took a look at your repository and I can see that you're using Colyseus as your game server and Phaser for the client side.
+
+Considering this setup, the primary part that will live within the Docker container is the Colyseus server. It'll be responsible for handling your multiplayer game logic, managing client connections, and syncing game state.
+
+The Phaser client will not be within the Docker container. Instead, it'll connect to your Colyseus server (inside Docker) and interact with it just like it does when everything is running locally without Docker.
+
+## Project Goal
+
+The goal of this project is to package your Colyseus server application into a Docker container, allowing it to be more portable and easier to deploy.
+
+## Prerequisites
+
+- Basic familiarity with JavaScript
+- Basic familiarity with GitHub, VS Code, and Terminal
+- Colyseus server and Phaser client running locally
+- Docker installed on your machine
+
+## Steps to Follow
+
+### Step 1: Install Docker
+
+Install Docker Desktop for Mac. You can download it from the official Docker website (https://www.docker.com/products/docker-desktop).
+
+### Step 2: Understand Basic Docker Commands
+
+Before starting the actual Dockerization, get familiar with some basic Docker commands:
+
+- \`docker run <image>\`: Run a Docker container with a specific image
+- \`docker ps\`: List running Docker containers
+- \`docker stop <container_id>\`: Stop a running Docker container
+
+### Step 3: Create a Dockerfile
+
+Create a Dockerfile in the root of your Colyseus server directory (in your case, this is the "server" folder). The Dockerfile will define the environment inside your container.
+
+Here's an example Dockerfile for a Node.js application:
+
+\`\`\`Dockerfile
+
+# Use an official Node runtime as the base image
+
+FROM node:14
+
+# Set the working directory in the container to /app
+
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the working directory
+
+COPY package\*.json ./
+
+# Install the application dependencies
+
+RUN npm install
+
+# Copy the rest of your application's code to the working directory
+
+COPY . .
+
+# Expose the port the app runs in
+
+EXPOSE 2567
+
+# Define the command to start your app
+
+CMD [ "node", "index.ts" ]
+\`\`\`
+
+Replace "index.ts" with the entry point to your Colyseus server application.
+
+### Step 4: Build Docker Image
+
+Navigate to the "server" directory that has your Dockerfile and run the following command:
+
+\`\`\`bash
+docker build -t my-colyseus-app .
+\`\`\`
+
+The \`-t\` flag lets you tag your image so it's easier to find later using the \`docker images\` command.
+
+### Step 5: Run Docker Container
+
+After the Docker image is built, you can now run the Docker container with the following command:
+
+\`\`\`bash
+docker run -p 8000:2567 -d my-colyseus-app
+\`\`\`
+
+The \`-p\` flag redirects a public port to a private port inside the container and \`-d\` runs the container in detached mode.
+
+After running this command, you should be able to access your server at localhost:8000.
+
+Remember to replace 8000 and 2567 with the ports you're using for your application.
+
+### Step 6: Adjust Phaser Client Connection
+
+You will need to adjust your Phaser client to connect to this Dockerized server. In the Phaser

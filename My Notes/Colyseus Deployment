@@ -6,7 +6,194 @@ I want to do this with Docker because Luis said so :D
 
 Initially, I am focused on getting Colyseus working on my local inside of Docker.
 
-# Initial prompt
+# Second attempt
+
+The first attempt ran into a dead end and then Luis sent me a lot of advice and specific help. I've compiled everything he shared with me into some notes below. I also had a chat with JV who recommended some fundamentals I could learn.
+
+I am going to focus on generating a plan to-do list based on the approach Luis has recommended.
+
+## Plan
+
+### Phase 1: local docker
+
+Two separate steps for client and server
+
+1. netlify automatically builds and deploys from the github "main" branch, ignoring /server
+2. server folder will build to a build folder within the server, and then to docker (which will initially be local)
+
+How to deploy a new version of the app
+
+- push changes to github
+- compile the server folder into /server/build
+  - `cd server` (make sure you are in the server folder)
+  - `npm run build`
+  - `npm run postbuild-unix`
+  - (can test by changing to build folder and runnign `node index.js`)
+- rebuild the docker image (still in server folder)
+  - make sure the docker desktop app is running
+  - `docker build -t pts-image -f Dockerfile .`
+- start a new container running
+  - `docker run -d -p 8080:8080 --name pts_container pts-image`
+  - use the docker desktop app to check if the container is running successfully
+    - check active containers
+    - open a terminal for the active container and check the logs
+- run a local version of the production code
+  - make sure you are in the client folder
+  - `npm run build` - builds compiled code into the dist folder
+  - `npm run preview` - runs compiled code locally with prod variables, points at the docker
+  - open two browser windows at the URL provided and test behaviour
+- check the docker container logs to see if it is registering clients joining and leaving
+
+### Phase 2: docker on a remote server <= NEXT TASK
+
+- in this version, it doesn't really change except that the docker image will be re-built on the server instead of locally
+- in netlify, I will need to use the interface to set new variables for prod that point at the remote server
+
+```
+VITE_APP_SERVER_URL=<your-production-server-url>
+VITE_APP_SERVER_PORT=8080
+```
+
+### Phase 3: stable app that doesn't break
+
+- in this version, I will want a dev docker, which may also live on the server
+- I will also want to do all dev on branches other than main, to prevent auto-deployment of pushed code during dev
+- I will want to be able to manage which mode I am in "dev" or "prod" and assign dev variables accordingly (there is best practice on this)
+- I want the dev code to have env variables that point towards the dev docker
+- And then I want the prod code to have env variables that point towards the prod docker
+- And I want a build and deploy approach that updates client and server together (if changes are happening across both)
+
+## To Do
+
+1. DONE: Update the app to Node 18 and make sure that is all working
+1. DONE: Make sure .gitignore ignores the server build folder
+1. DONE: Implement the Docker approach so that Colyseus runs locally in docker
+
+- DONE: get the app building into the build folder
+- DONE: get the docker image being created off of the build folder
+- DONE: run a new container and test
+
+1. Set up env variables and modes to make the docker prod and the non-docker server dev
+1. Build out the readme for Phaser Test so that it includes all of this approach clearly
+1. Investigate and choose a hosting option
+1. Implement docker on hosting
+
+## Chats with JV and Luis
+
+## Chat with JV
+
+Basics
+
+- fundmentals of computer hardware and networking
+- memory vs storage
+- gpu vs cpu
+- networking, IP addresses ports
+- Docker is good!
+
+Intermediate
+
+- Gotchas - often it gets working, but then it breaks later
+- Often it's assumptions you made: e.g. the time on this computer is the same as on this computer
+- How do you know if something has gone wrong? Notifications, monitoring
+- If something breaks, how will you figure out what happened? Where do the logs or error messages go?
+- And then, what do you do when log files fill up?
+- Systems maintenance type things
+
+## Notes from Discord chat with Luis
+
+### Initial alignment
+
+- Colyseus docs on deployment with Docker exist: https://docs.colyseus.io/deployment/#docker
+- need to use a .dockerignore file in the same directory
+- docker detached mode leaves the container running "in the background" https://www.freecodecamp.org/news/docker-detached-mode-explained/
+- key difference of doing a build to transpile to js vs running ts in the server permanently
+- Luis was assuming to do the transpile to build folder and the form the docker image off the build folder only
+- he added some lines to package.json to make this all flow correctly (refer to discord chat)
+- question is - which approach do I actually want?
+- suggestion is - do whatever the Colyseus people do
+- "Looking at the dockerfile it kinda looks like they install the nodemodules when they're doing the docker build" ... referring to the examples from the Colyseus docker docs
+- they use `npm ci` - which does a clean install every time
+- we consider an approach that does the build first but otherwise follows their dockerfile
+
+### Aligning on preferred approach
+
+- rabbit hole about the different environments that might involved and what the .env files might be called
+- "So the environment is like where you're running it, and then you've got the thing that you're running, the artefact let's say"
+  - env.laptop.local - The artefact is your typescript files
+  - env.docker.local - The artefact is a docker container image, that you've built with a dockerfile
+  - env.docker.prod - The same artefact as env.docker.local, but you'd probably have some environment variables that are different
+- "Anyway this is all to say that I think the way they're doing it is running the typescript directly instead of compiling it, just reading through their docs because I'm confused about the build step in your packages.json"
+- H: "So the AI told me I had two options: running the Typescript directly vs compiling it to JS. The AI's summary was: much of a muchness. Since it's server side, non-compiled TS is ok and may have small performance loss. And has the benefit of faster dev process (avoiding a build step)"
+- L: "Yeah that lines up with my understanding
+  I normally compile it because it used to be more compatible but that might not be an issue anymore a habit built up from before it was the case"
+- Spiral out into - what will my eventual setup be:
+  - H: "I was leaning that way, to avoid a build step, and be able to develop straight into docker"
+  - H: "What I mean by this is not ever running colyseus purely on my laptop and only ever running it in docker. Which would reduce the number of environments by 1"
+  - H: "one environment is running colyseus on my local, so that I can dev really rapidly
+    another environment is post-build colyseus in docker, which is basically for pre-deployment testing"
+  - L: "post-build colyseus in docker is the container image that you build so that you can deploy your app. It's only another environment if you choose to spin that container image up on your local machine"
+  - H: "Ah right. I could actually just skip that step once I have it running on the web"
+  - L: "Which is a valid way of developing, and keeps everything closer to your online hosted environment, but the trade off is it's harder to debug and slower to build"
+  - H: "I can imagine that if I actually had a live app with people using it, I'd want a staging docker somewhere,, but for now I don't need that extra step"
+  - L: "Yeah! You're right on the money though. For Spies & Soldiers we'll have
+    - Your local machine
+    - Development environment - Goolge Cloud, automatically deployed each time you commit a change to the main branch
+    - QA/Staging environment - Goolge Cloud, automatically deployed each time you commit a change to the prerelease branch
+    - Production environment - Goolge Cloud, automatically builds but requires a button press to deploy, each time you commit a change to the production branch
+    - And a database for each - except local which points to the dev database"
+  - L: "It means that the team can choose to get bleeding edge changes, or do QA on a build we're testing before pushing it live etc"
+
+### Luis's recommended approach
+
+- Okay I think the error with the built version was related to incorrect typescript config. I used these and it worked no problem
+  https://docs.colyseus.io/community/setup-server-from-scratch-typescript/?h=tsc#setup
+- Then he supplies a .tsconfig file which is only different from the docs in that it uses "build" insted of "dist"
+- and a package.json file
+- all of which are using the approach of compiling first and then creating the docker image
+- RECOMMENDED APPROACH:
+
+  - L: "With those config files you should be able to run the following to compile the typescript
+    - `npm run build`
+    - `npm run postbuild-windows` (or `postbuild-unix` if you're on mac or linux)"
+  - and if you want to test it
+    - Move directory into the build folder: cd .\build\
+    - Run the compiled javascript code: node index.js
+  - Another reason I do that step is because that lets me know exactly what code I'm about to copy into the docker container, which I find works well for me
+  - TODO: A quick gotcha on this is NodeJS 14 is really old and has just passed into end of life
+  - Chuck this dockerfile in the server folder, and then from the server folder you should be able to run this command: `docker build --tag node-docker-test build --file dockerfile`
+  - Dockerfile
+
+    ```dockerfile
+    FROM node:18
+
+    ENV PORT 8080
+
+    WORKDIR /app
+
+    COPY . .
+
+    EXPOSE 8080
+
+    CMD ["node", "index.js"]
+    ```
+
+  - Dockerfile notes:
+    - 8080 is the port, we're setting the environment variable PORT to 8080 and then colyseus reads the PORT environment and uses that when it starts listening (eductated guess that I'm fiarly confident about)
+    - `CMD ["node", "index.js"]` - This tells your container image to start the server, with the command node index.js
+  - Docker build command notes: `docker build --tag node-docker-test build --file dockerfile`
+    - docker build tells Docker that we're building a thing
+    - `--tag node-docker-test` Lets you name the container, so you can reference that name later eg when you deploy
+    - `build` This lets Docker know that the folder we want to run this command in is the build folder (usually you'll see people use . to say use the folder that I'm currently in, but if you did it like that you'd have to set a bunch of ignores up for anything that's not stuff that you want to ship etc)
+    - `--file dockerfile` this tells Docker that the dockerfile isn't actually in the build folder that we just specified, instead use the one in the server folder that we're currently in
+
+### Hosting, for future
+
+- P.s. you could self host on Amazon with Fargate (hosting for containers) for around ~$12 / month USD in a Melbourne datacentre - https://aws.amazon.com/fargate/pricing/
+- that's 1 cpu core and 1gb of ram, you'd have to profile it to see if that'd work but if we're talking about less than 100 concurrent people I'd say it'd crush it no worries
+
+# Initial prompt - failed attempt
+
+This prompt and the following results were part of an initial failed attempt. I ended up going to Luis for help.
 
 ## Project
 
